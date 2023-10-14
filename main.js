@@ -54,7 +54,12 @@ async function authorize() {
   client.addEventHandler(async (event) => {
     const message = event.message;
     const peerId = message?.peerId?.channelId?.value; // id группы
-    const messageText = message?.message;
+    const messageText = message?.message?.toLowerCase(); 
+    
+  //   const msgs = await client.getMessages(chatIdSubsribe, {
+  //     limit: 10,
+  // });
+  // console.log("ggggggggggggggggggggggggggggggggggg", msgs)
     // console.log("event>>>>>>>>>>>", event);
 
     if (transformChatId(chatIdSubsribe) == String(peerId)) {
@@ -70,7 +75,7 @@ async function authorize() {
 
       if (containsKeyword) {
         await client.sendMessage(chatIdToSend, {
-          message: "Привет! Как я могу вам помочь?" + url,
+          message: "В строительном чате пишут о потолках" + url,
         });
         console.log("you message has been send");
 
@@ -79,5 +84,7 @@ async function authorize() {
     }
   });
 })();
+
+
 
 //const url = `https://t.me/c/1848424988/${messageId}`;
